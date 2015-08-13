@@ -2,8 +2,6 @@
 #include <QtCore>
 #include <QtGui>
 
-#define SCR_WIDTH (640)
-#define SCR_HEIDTH (960)
 
 WPagePool* WPagePool::m_pInstance = nullptr;
 
@@ -24,12 +22,9 @@ bool WPagePool::contains(const QString &id)
     return m_imgList.contains(id);
 }
 
-QPixmap WPagePool::getPagePixmap(const QString &id)
+QByteArray WPagePool::getPageData(const QString &id)
 {
-    QPixmap pix(SCR_WIDTH,SCR_HEIDTH);
-    pix.loadFromData(m_zip->fileData(id),"JPG");
-    qDebug()<<"PIX:"<<pix.size();
-    return pix;
+    return m_zip->fileData(id);
 }
 
 WPagePool *WPagePool::getInstance()
@@ -43,23 +38,30 @@ void WPagePool::setSource(const QString &source)
     for (const auto ite : m_zip->fileInfoList()){
         m_imgList << ite.filePath;
     }
+    qDebug()<<"Number of pages:"<<m_imgList.size();
 }
 
 void WPagePool::next()
 {
-    m_index > m_imgList.size() ? m_index = m_imgList.size() : ++m_index;
+    m_index = m_index < (m_imgList.size()-1) ? m_index + 1 : m_imgList.size() - 1;
     emit currentPageChanged();
 }
 
 void WPagePool::previous()
 {
-    m_index < 0 ? m_index = 0 : --m_index;
+    m_index = m_index > 0 ? m_index - 1 : 0;
     emit currentPageChanged();
 }
 
 void WPagePool::gotoPage(int index)
 {
-    index > m_imgList.size() ? m_index = m_imgList.size() : m_index = index;
+    if(index < 0){
+        m_index = 0;
+    } else if(index > m_imgList.size()){
+        m_index = m_imgList.size() - 1;
+    } else {
+        m_index = index;
+    }
     emit currentPageChanged();
 }
 
@@ -68,4 +70,5 @@ QString WPagePool::getCurrentPage()
     qDebug()<<"INDEX"<<m_index;
     return QStringLiteral("image://pages/%1").arg(m_imgList.at(m_index));
 }
+
 

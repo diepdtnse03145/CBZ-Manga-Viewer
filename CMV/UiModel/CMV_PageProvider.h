@@ -3,18 +3,14 @@
 
 #include <QQuickImageProvider>
 
-#include "wpagepool.h"
-
-class WPageProvider : public QQuickImageProvider
+class CMV_PageProvider : public QQuickImageProvider
 {
 public:
-    WPageProvider();
+    CMV_PageProvider();
 
-    ~WPageProvider();
+    ~CMV_PageProvider() = default;
 
     QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize);
-
-private:
 };
 
 #endif // WPAGEPROVIDER_H

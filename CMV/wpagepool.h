@@ -11,12 +11,12 @@ class WPagePool : public QObject
     Q_OBJECT
     Q_PROPERTY(QString currentPage READ getCurrentPage NOTIFY currentPageChanged)
 public:
-
+    void setSource(const QString& source);
     bool contains(const QString& id);
 
-    QPixmap getPagePixmap(const QString& id);
+    QByteArray getPageData(const QString& id);
+
     static WPagePool* getInstance();
-    void setSource(const QString& source);
 
 signals:
     void currentPageChanged();

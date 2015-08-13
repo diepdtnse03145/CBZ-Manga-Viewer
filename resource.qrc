@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/qml" lang="QML">
+        <file>gui/main.qml</file>
+        <file>gui/Page.qml</file>
+    </qresource>
+</RCC>
