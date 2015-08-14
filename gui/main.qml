@@ -5,33 +5,25 @@ import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id:root
-    title: qsTr("CBZ")
     height: 960
     width: 640
     visible: true
-    Image{
-        id:img
-        source: Book.currentPage
-        anchors.fill:parent
-
-        MouseArea{
-            x: parent.width / 3
-            y: 0
-            width: (parent.width / 3) * 2
-            height: parent.height
-            onClicked: {
-                Book.nextPage()
-            }
+    PageDisplay {
+        id: page
+        anchors.fill: parent
+        source : Book.currentPage
+        pageListModel: pageLists
+        onNext: {
+            Book.nextPage()
         }
 
-        MouseArea{
-            x: 0
-            y: 0
-            width: parent.width / 3
-            height: parent.height
-            onClicked: {
-                Book.previousPage()
-            }
+        onPrevious: {
+            Book.previousPage()
+        }
+
+        onToPage: {
+            console.debug("To page:" + page)
+            Book.gotoPage(page)
         }
     }
 }

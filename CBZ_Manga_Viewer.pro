@@ -3,13 +3,14 @@ TEMPLATE = app
 QT += qml quick widgets gui-private gui
 
 SOURCES += main.cpp \
-    CMV/wpagepool.cpp \
     CMV/CMV_UiHandler.cpp \
     CMV/CMV_DeviceInfo.cpp \
     CMV/UiModel/CMV_PageProvider.cpp \
     CMV/CMV_CurrentBook.cpp \
-    CMV/CMV_Book.cpp \
-    CMV/CMV_CbzBook.cpp
+    CMV/UiModel/CMV_PageListModel.cpp \
+    CMV/UiModel/CMV_PageListProvider.cpp \
+    CMV/Book/CMV_Book.cpp \
+    CMV/Book/CMV_CbzBook.cpp
 
 TARGET = CBZ_Manga_Reader
 
@@ -23,20 +24,23 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    CMV/wpagepool.h \
     CMV/CMV_UiHandler.h \
     CMV/CMV_Log.h \
     CMV/CMV_DeviceInfo.h \
     CMV/UiModel/CMV_PageProvider.h \
     CMV/CMV_CurrentBook.h \
-    CMV/CMV_Book.h \
-    CMV/CMV_CbzBook.h
+    CMV/UiModel/CMV_PageListModel.h \
+    CMV/UiModel/CMV_PageListProvider.h \
+    CMV/Book/CMV_Book.h \
+    CMV/Book/CMV_CbzBook.h
 
 CONFIG += C++14
 
 INCLUDEPATH += CMV \
-               CMV/UiModel
+               CMV/UiModel \
+               CMV/Book
 
-#CONFIG(release, debug|release) {
-#    DEFINES += CMV_NO_DEBUG_OUTPUT
-#}
+CONFIG(release, debug|release) {
+    DEFINES += CMV_NO_DEBUG_OUTPUT
+}
+

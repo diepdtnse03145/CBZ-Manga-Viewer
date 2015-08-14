@@ -15,13 +15,29 @@ public:
          return i;
     }
 
-    QString getCurrentPage();
-    QImage getPageData(const QString& id);
+    QString getCurrentPage() const;
+    QImage getPageData(const QString& id) const;
 
     void next();
+    void previous();
+    void gotoPage(int page);
+    inline QString pageName(int index) const;
+    inline int size() const;
 
+private:
     CMV_CbzBook book;
     int index;
 };
+
+QString CMV_CurrentBook::pageName(int index) const
+{
+    return book.pageName(index);
+}
+
+int CMV_CurrentBook::size() const
+{
+    return book.size();
+}
+
 
 #endif // CMV_CURRENTBOOK_H
