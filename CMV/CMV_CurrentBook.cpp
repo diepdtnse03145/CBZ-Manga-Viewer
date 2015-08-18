@@ -3,7 +3,7 @@
 #include <QtGui>
 
 CMV_CurrentBook::CMV_CurrentBook():
-    book{QStringLiteral(R"(/home/diep/Documents/Amagi Brilliant Park.cbz)")},
+    book{QStringLiteral(R"(/home/diepdtn/Documents/Amagi Brilliant Park.cbz)")},
     index{}
 {
 

@@ -12,7 +12,7 @@ public:
     ~CMV_PageListModel() = default;
 
     enum PageListRole{
-        NameRole  = Qt::UserRole + 1,
+        NameRole  = Qt::UserRole + 1
     };
 
 public slots:

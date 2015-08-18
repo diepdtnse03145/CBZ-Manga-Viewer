@@ -10,7 +10,10 @@ SOURCES += main.cpp \
     CMV/UiModel/CMV_PageListModel.cpp \
     CMV/UiModel/CMV_PageListProvider.cpp \
     CMV/Book/CMV_Book.cpp \
-    CMV/Book/CMV_CbzBook.cpp
+    CMV/Book/CMV_CbzBook.cpp \
+    CMV/UiModel/CMV_BookManagerListModel.cpp \
+    CMV/CMV_BookManager.cpp \
+    CMV/UiModel/CMV_BookCoverProvider.cpp
 
 TARGET = CBZ_Manga_Reader
 
@@ -32,7 +35,10 @@ HEADERS += \
     CMV/UiModel/CMV_PageListModel.h \
     CMV/UiModel/CMV_PageListProvider.h \
     CMV/Book/CMV_Book.h \
-    CMV/Book/CMV_CbzBook.h
+    CMV/Book/CMV_CbzBook.h \
+    CMV/UiModel/CMV_BookManagerListModel.h \
+    CMV/CMV_BookManager.h \
+    CMV/UiModel/CMV_BookCoverProvider.h
 
 CONFIG += C++14
 
@@ -40,7 +46,7 @@ INCLUDEPATH += CMV \
                CMV/UiModel \
                CMV/Book
 
-CONFIG(release, debug|release) {
-    DEFINES += CMV_NO_DEBUG_OUTPUT
-}
+#CONFIG(release, debug|release) {
+#    DEFINES += CMV_NO_DEBUG_OUTPUT
+#}
 

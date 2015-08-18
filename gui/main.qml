@@ -8,22 +8,30 @@ ApplicationWindow {
     height: 960
     width: 640
     visible: true
-    PageDisplay {
-        id: page
+//    PageDisplay {
+//        id: page
+//        anchors.fill: parent
+//        source : Book.currentPage
+//        pageListModel: pageLists
+//        onNext: {
+//            Book.nextPage()
+//        }
+
+//        onPrevious: {
+//            Book.previousPage()
+//        }
+
+//        onToPage: {
+//            console.debug("To page:" + page)
+//            Book.gotoPage(page)
+//        }
+//    }
+
+    ListView{
         anchors.fill: parent
-        source : Book.currentPage
-        pageListModel: pageLists
-        onNext: {
-            Book.nextPage()
-        }
-
-        onPrevious: {
-            Book.previousPage()
-        }
-
-        onToPage: {
-            console.debug("To page:" + page)
-            Book.gotoPage(page)
+        clip:true
+        model: bookLists
+        delegate: BookManagerListDelegate{
         }
     }
 }

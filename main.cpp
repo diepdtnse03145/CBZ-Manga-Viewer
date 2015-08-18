@@ -8,6 +8,8 @@
 #include "CMV_UiHandler.h"
 #include "CMV_PageListProvider.h"
 #include "CMV_PageListModel.h"
+#include "CMV_BookManagerListModel.h"
+#include "CMV_BookCoverProvider.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,12 +17,15 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     CMV_UiHandler handler;
     CMV_PageListModel pageListModel;
+    CMV_BookManagerListModel bookManagerModel;
 
     engine.addImageProvider(QLatin1String("pages"), new CMV_PageProvider());
     engine.addImageProvider(QLatin1String("pageList"), new CMV_PageListProvider());
+    engine.addImageProvider(QLatin1String("bookCover"), new CMV_BookCoverProvider());
 
     engine.rootContext()->setContextProperty("Book",&handler);
     engine.rootContext()->setContextProperty("pageLists", &pageListModel);
+    engine.rootContext()->setContextProperty("bookLists", &bookManagerModel);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/gui/main.qml")));
 

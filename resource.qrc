@@ -3,5 +3,6 @@
         <file>gui/main.qml</file>
         <file>gui/PageDisplay.qml</file>
         <file>gui/PageListDelegate.qml</file>
+        <file>gui/BookManagerListDelegate.qml</file>
     </qresource>
 </RCC>

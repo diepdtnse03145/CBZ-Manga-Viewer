@@ -17,6 +17,7 @@ public:
     int size() const;
     QImage pageAt(const QString &id) const;
     QString pageName(int index) const;
+    QImage cover() const;
 
 private:
     QSharedPointer<QZipReader> zip;

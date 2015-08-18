@@ -37,5 +37,12 @@ QString CMV_CbzBook::pageName(int index) const
     return zip->fileInfoList()[index].filePath;
 }
 
+QImage CMV_CbzBook::cover() const
+{
+    QImage img;
+    img.loadFromData(zip->fileData(pageName(0)),"JPG");
+    return img;
+}
+
 
 
