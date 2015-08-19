@@ -1,13 +1,14 @@
 #include "CMV_CbzBook.h"
 #include <QtCore>
 #include <QtGui>
+#include "CMV_Log.h"
 
 CMV_CbzBook::CMV_CbzBook(const QString &name) :
     CMV_Book(),
     zip(QSharedPointer<QZipReader>::create(name)),
     bookInfo(name)
 {
-
+    bookCover.loadFromData(zip->fileData(pageName(0)),"JPG");
 }
 
 CMV_CbzBook::~CMV_CbzBook()
@@ -28,7 +29,12 @@ int CMV_CbzBook::size() const
 QImage CMV_CbzBook::pageAt(const QString& id) const
 {
     QImage img;
-    img.loadFromData(zip->fileData(id),"JPG");
+    CMV_ELTIMER_START(zipTimer);
+    auto data = zip->fileData(id);
+    CMV_ELTIMER_STOP(zipTimer);
+    CMV_ELTIMER_START(imgTimer);
+    img.loadFromData(data,"JPG");
+    CMV_ELTIMER_STOP(imgTimer);
     return img;
 }
 
@@ -39,9 +45,7 @@ QString CMV_CbzBook::pageName(int index) const
 
 QImage CMV_CbzBook::cover() const
 {
-    QImage img;
-    img.loadFromData(zip->fileData(pageName(0)),"JPG");
-    return img;
+    return bookCover;
 }
 
 

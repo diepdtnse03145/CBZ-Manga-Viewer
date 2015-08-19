@@ -24,19 +24,21 @@ public:
     inline QString pageName(int index) const;
     inline int size() const;
 
+    void setBook(QString path);
+
 private:
-    CMV_CbzBook book;
+    CMV_CbzBook* book;
     int index;
 };
 
 QString CMV_CurrentBook::pageName(int index) const
 {
-    return book.pageName(index);
+    return book->pageName(index);
 }
 
 int CMV_CurrentBook::size() const
 {
-    return book.size();
+    return book->size();
 }
 
 

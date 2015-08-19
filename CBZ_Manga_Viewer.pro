@@ -46,7 +46,7 @@ INCLUDEPATH += CMV \
                CMV/UiModel \
                CMV/Book
 
-#CONFIG(release, debug|release) {
-#    DEFINES += CMV_NO_DEBUG_OUTPUT
-#}
+CONFIG(release, debug|release) {
+    DEFINES += CMV_NO_DEBUG_OUTPUT
+}
 

@@ -5,7 +5,7 @@
 #include <private/qzipreader_p.h>
 #include <QSharedPointer>
 #include <QFileInfo>
-
+#include <QImage>
 
 class CMV_CbzBook : public CMV_Book
 {
@@ -22,6 +22,7 @@ public:
 private:
     QSharedPointer<QZipReader> zip;
     QFileInfo bookInfo;
+    QImage bookCover;
 };
 
 #endif // CMV_CBZBOOK_H

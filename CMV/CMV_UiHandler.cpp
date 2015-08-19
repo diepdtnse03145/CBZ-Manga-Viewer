@@ -1,7 +1,7 @@
 #include "CMV_UiHandler.h"
 #include "CMV_Log.h"
 #include "CMV_CurrentBook.h"
-
+#include "CMV_BookManager.h"
 #include <QtCore>
 
 CMV_UiHandler::CMV_UiHandler(QObject *parent) : QObject(parent)
@@ -38,5 +38,12 @@ void CMV_UiHandler::gotoPage(int page)
 QString CMV_UiHandler::getCurrentPage()
 {
     return CMV_CurrentBook::instance().getCurrentPage();
+}
+
+void CMV_UiHandler::setCurrentBook(int index)
+{
+    CMV_DEBUG<<"set Current Book"<<index;
+    CMV_CurrentBook::instance().setBook(QStringLiteral(R"(/home/diepdtn/Music/%1.cbz)").arg(CMV_BookManager::instance().name(index)));
+    emit screenSourceChanged(QStringLiteral("qrc:/qml/gui/PageDisplayScreen.qml"));
 }
 

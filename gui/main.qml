@@ -8,30 +8,16 @@ ApplicationWindow {
     height: 960
     width: 640
     visible: true
-//    PageDisplay {
-//        id: page
-//        anchors.fill: parent
-//        source : Book.currentPage
-//        pageListModel: pageLists
-//        onNext: {
-//            Book.nextPage()
-//        }
 
-//        onPrevious: {
-//            Book.previousPage()
-//        }
-
-//        onToPage: {
-//            console.debug("To page:" + page)
-//            Book.gotoPage(page)
-//        }
-//    }
-
-    ListView{
+    Loader{
         anchors.fill: parent
-        clip:true
-        model: bookLists
-        delegate: BookManagerListDelegate{
-        }
+        id: screenLoader
+        source: "qrc:/qml/gui/BookManagerScreen.qml"
     }
+
+    function loadSource(source) {
+        console.log("Got message:", source)
+        screenLoader.source = source
+    }
+
 }

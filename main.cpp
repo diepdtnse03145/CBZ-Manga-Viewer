@@ -29,5 +29,9 @@ int main(int argc, char *argv[])
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/gui/main.qml")));
 
+    QObject::connect(&handler,&CMV_UiHandler::screenSourceChanged,[&engine](QString source){
+        QMetaObject::invokeMethod(engine.rootObjects().at(0), "loadSource",
+                Q_ARG(QVariant, source));
+    });
     return app.exec();
 }

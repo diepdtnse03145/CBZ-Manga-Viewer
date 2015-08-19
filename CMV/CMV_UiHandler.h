@@ -14,12 +14,14 @@ public:
 
 signals:
     void currentPageChanged();
+    void screenSourceChanged(QString);
 
 public slots:
     void nextPage();
     void previousPage();
     void gotoPage(int page);
     QString getCurrentPage();
+    void setCurrentBook(int index);
 
 };
 

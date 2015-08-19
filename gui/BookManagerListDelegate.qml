@@ -3,7 +3,6 @@ import QtQuick 2.0
 Rectangle {
     height: 100
     width: 640
-
     Image {
         id: image1
         x: 0
@@ -41,6 +40,14 @@ Rectangle {
         height: 45
         text: size
         font.pixelSize: 12
+    }
+
+    MouseArea{
+        anchors.fill: parent
+        onClicked: {
+            console.debug("set current book: "+ index)
+            Book.setCurrentBook(index)
+        }
     }
 }
 
