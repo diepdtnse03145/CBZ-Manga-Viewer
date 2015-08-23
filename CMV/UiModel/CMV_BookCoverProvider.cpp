@@ -5,21 +5,21 @@
 #include "CMV_DeviceInfo.h"
 #include "CMV_BookManager.h"
 
-CMV_BookCoverProvider::CMV_BookCoverProvider() :
-QQuickImageProvider(QQuickImageProvider::Pixmap)
+CMV_BookCoverProvider::CMV_BookCoverProvider(QSharedPointer<CMV_BookManager> manager) :
+    QQuickImageProvider(QQuickImageProvider::Pixmap),
+    bookManager{manager}
 {
 
 }
 
 QPixmap CMV_BookCoverProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
 {
-    QElapsedTimer timer;
-    timer.start();
+    CMV_ELTIMER_START(pixmap);
 
     QPixmap pix(100,100);
 
     QPainter painter(&pix);
-    auto img = CMV_BookManager::instance().cover(id);
+    auto img = bookManager->cover(id);
 
     auto imgScaled = img.scaled(pix.size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
@@ -27,8 +27,7 @@ QPixmap CMV_BookCoverProvider::requestPixmap(const QString &id, QSize *size, con
     painter.fillRect(pix.rect(),QColor("white"));
     painter.drawImage(imgPoint,imgScaled);
 
-    CMV_DEBUG<<"Elapsed:"<<timer.elapsed();
-
+    CMV_ELTIMER_STOP(pixmap);
     return pix;
 }
 

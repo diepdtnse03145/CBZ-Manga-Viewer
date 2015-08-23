@@ -3,7 +3,6 @@ TEMPLATE = app
 QT += qml quick widgets gui-private gui
 
 SOURCES += main.cpp \
-    CMV/CMV_UiHandler.cpp \
     CMV/CMV_DeviceInfo.cpp \
     CMV/UiModel/CMV_PageProvider.cpp \
     CMV/CMV_CurrentBook.cpp \
@@ -13,7 +12,8 @@ SOURCES += main.cpp \
     CMV/Book/CMV_CbzBook.cpp \
     CMV/UiModel/CMV_BookManagerListModel.cpp \
     CMV/CMV_BookManager.cpp \
-    CMV/UiModel/CMV_BookCoverProvider.cpp
+    CMV/UiModel/CMV_BookCoverProvider.cpp \
+    CMV/CMV_ScreenManager.cpp
 
 TARGET = CBZ_Manga_Reader
 
@@ -27,7 +27,6 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    CMV/CMV_UiHandler.h \
     CMV/CMV_Log.h \
     CMV/CMV_DeviceInfo.h \
     CMV/UiModel/CMV_PageProvider.h \
@@ -38,13 +37,18 @@ HEADERS += \
     CMV/Book/CMV_CbzBook.h \
     CMV/UiModel/CMV_BookManagerListModel.h \
     CMV/CMV_BookManager.h \
-    CMV/UiModel/CMV_BookCoverProvider.h
+    CMV/UiModel/CMV_BookCoverProvider.h \
+    CMV/CMV_ScreenManager.h \
+    gui/CMV_ScreenDefine.h
 
 CONFIG += C++14
 
 INCLUDEPATH += CMV \
                CMV/UiModel \
                CMV/Book
+
+
+DEFINES += CMV_NO_ELTIMER
 
 CONFIG(release, debug|release) {
     DEFINES += CMV_NO_DEBUG_OUTPUT

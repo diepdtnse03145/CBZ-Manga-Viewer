@@ -3,17 +3,17 @@ import QtQuick 2.0
 PageDisplay {
     id: page
     anchors.fill: parent
-    source : Book.currentPage
+    source : CurrentBook.currentPage
     pageListModel: pageLists
     onNext: {
-        Book.nextPage()
+        CurrentBook.next()
     }
 
     onPrevious: {
-        Book.previousPage()
+        CurrentBook.previous()
     }
 
     onToPage: {
-        Book.gotoPage(page)
+        CurrentBook.gotoPage(page)
     }
 }

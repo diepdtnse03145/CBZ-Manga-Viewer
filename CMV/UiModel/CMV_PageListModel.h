@@ -3,12 +3,13 @@
 
 
 #include <QAbstractListModel>
+#include "CMV_CurrentBook.h"
 
 class CMV_PageListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    CMV_PageListModel(QObject* parent = 0);
+    CMV_PageListModel(QSharedPointer<CMV_CurrentBook>cr,QObject* parent = 0);
     ~CMV_PageListModel() = default;
 
     enum PageListRole{
@@ -21,6 +22,8 @@ public slots:
 
 protected:
     QHash<int, QByteArray> roleNames() const;
+private:
+    QSharedPointer<CMV_CurrentBook> currentBook;
 
 };
 

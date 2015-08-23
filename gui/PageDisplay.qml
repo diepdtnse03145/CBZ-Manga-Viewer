@@ -38,7 +38,24 @@ Image{
         onClicked: {
             console.debug("Show")
             pageList.visible  = !pageList.visible
+            topPanel.visible = !topPanel.visible
+        }
+    }
 
+    Rectangle{
+        id: topPanel
+        x: 0
+        y: 0
+        width: root.width
+        height: 50
+        color: "green"
+        visible: false
+        opacity: 0.5
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                ScreenManager.toManager()
+            }
         }
     }
 

@@ -46,7 +46,8 @@ Rectangle {
         anchors.fill: parent
         onClicked: {
             console.debug("set current book: "+ index)
-            Book.setCurrentBook(index)
+            CurrentBook.setBook(path)
+            ScreenManager.toViewer()
         }
     }
 }

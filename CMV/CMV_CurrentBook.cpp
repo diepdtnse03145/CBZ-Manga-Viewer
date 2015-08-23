@@ -1,17 +1,22 @@
 #include "CMV_CurrentBook.h"
 #include "CMV_Log.h"
+#include "CMV_CbzBook.h"
 #include <QtGui>
 
-CMV_CurrentBook::CMV_CurrentBook():
-    book{new CMV_CbzBook(QStringLiteral(R"(/home/diepdtn/Music/Sexless Friend.cbz)"))},
+CMV_CurrentBook::CMV_CurrentBook(QSharedPointer<CMV_BookManager> manager, QObject *parent):
+    QObject(parent),
+    bookManager{manager},
     index{}
 {
-
+    if(bookManager->lastRead()){
+        book = bookManager->lastRead();
+    }else{
+        book = QSharedPointer<CMV_Book>();
+    }
 }
 
 CMV_CurrentBook::~CMV_CurrentBook()
 {
-    delete book;
 }
 
 QString CMV_CurrentBook::getCurrentPage() const
@@ -29,11 +34,13 @@ QImage CMV_CurrentBook::getPageData(const QString &id) const
 void CMV_CurrentBook::next()
 {
     index = index < (book->size()-1) ? index + 1 : book->size() - 1;
+    emit currentPageChanged();
 }
 
 void CMV_CurrentBook::previous()
 {
     index = index > 0 ? index - 1 : 0;
+    emit currentPageChanged();
 }
 
 void CMV_CurrentBook::gotoPage(int page)
@@ -45,13 +52,14 @@ void CMV_CurrentBook::gotoPage(int page)
     } else {
         index = page;
     }
+    emit currentPageChanged();
 }
 
 void CMV_CurrentBook::setBook(QString path)
 {
     CMV_DEBUG<<"set Book"<<path;
     if(QFileInfo(path).exists()){
-        delete book;
-        book = new CMV_CbzBook(path);
+        book = QSharedPointer<CMV_CbzBook>::create(path);
+        index = 0;
     }
 }

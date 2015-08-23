@@ -2,7 +2,8 @@
 #define CMV_BOOKMANAGER_H
 
 #include <QList>
-#include "CMV_CbzBook.h"
+#include "CMV_Book.h"
+#include <QSharedPointer>
 
 class QString;
 
@@ -11,23 +12,21 @@ class CMV_BookManager
 public:
     CMV_BookManager();
 
-    static inline CMV_BookManager& instance()
-    {
-         static CMV_BookManager i;
-         return i;
-    }
-
     int size(int index);
 
     QString name(int index);
     QImage cover(QString name);
     QString type(int index);
+    QString path(int index);
+
+    QSharedPointer<CMV_Book> lastRead();
+
     inline int size(){
         return bookList.size();
     }
 
 private:
-    QList<CMV_CbzBook> bookList;
+    QList<QSharedPointer<CMV_Book>> bookList;
 
 };
 

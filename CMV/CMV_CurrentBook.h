@@ -1,33 +1,38 @@
 #ifndef CMV_CURRENTBOOK_H
 #define CMV_CURRENTBOOK_H
 
-#include "CMV_CbzBook.h"
+#include <QObject>
+#include <QSharedPointer>
+#include "CMV_BookManager.h"
 
-class CMV_CurrentBook
+class CMV_Book;
+
+class CMV_CurrentBook : public QObject
 {
-public:
-    CMV_CurrentBook();
-    ~CMV_CurrentBook();
+    Q_OBJECT
+    Q_PROPERTY(QString currentPage READ getCurrentPage NOTIFY currentPageChanged)
 
-    static inline CMV_CurrentBook& instance()
-    {
-         static CMV_CurrentBook i;
-         return i;
-    }
+signals:
+    void currentPageChanged();
+
+public:
+    CMV_CurrentBook(QSharedPointer<CMV_BookManager> manager, QObject* parent = nullptr);
+    ~CMV_CurrentBook();
 
     QString getCurrentPage() const;
     QImage getPageData(const QString& id) const;
 
-    void next();
-    void previous();
-    void gotoPage(int page);
+    Q_INVOKABLE void next();
+    Q_INVOKABLE void previous();
+    Q_INVOKABLE void gotoPage(int page);
     inline QString pageName(int index) const;
     inline int size() const;
 
-    void setBook(QString path);
+    Q_INVOKABLE void setBook(QString path);
 
 private:
-    CMV_CbzBook* book;
+    QSharedPointer<CMV_Book> book;
+    QSharedPointer<CMV_BookManager> bookManager;
     int index;
 };
 

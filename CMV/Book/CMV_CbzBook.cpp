@@ -3,10 +3,10 @@
 #include <QtGui>
 #include "CMV_Log.h"
 
-CMV_CbzBook::CMV_CbzBook(const QString &name) :
+CMV_CbzBook::CMV_CbzBook(const QString &path) :
     CMV_Book(),
-    zip(QSharedPointer<QZipReader>::create(name)),
-    bookInfo(name)
+    zip(QSharedPointer<QZipReader>::create(path)),
+    bookInfo(path)
 {
     bookCover.loadFromData(zip->fileData(pageName(0)),"JPG");
 }
@@ -46,6 +46,11 @@ QString CMV_CbzBook::pageName(int index) const
 QImage CMV_CbzBook::cover() const
 {
     return bookCover;
+}
+
+QString CMV_CbzBook::path() const
+{
+    return bookInfo.absoluteFilePath();
 }
 
 

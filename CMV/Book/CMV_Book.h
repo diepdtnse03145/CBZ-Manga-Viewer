@@ -14,6 +14,7 @@ public:
     virtual QString name() const = 0;
     virtual QString pageName(int index) const = 0;
     virtual QImage cover() const = 0;
+    virtual QString path() const = 0;
 };
 
 #endif // CMV_BOOK_H

@@ -6,8 +6,9 @@
 #include "CMV_DeviceInfo.h"
 #include "CMV_CurrentBook.h"
 
-CMV_PageProvider::CMV_PageProvider() :
-    QQuickImageProvider(QQuickImageProvider::Pixmap)
+CMV_PageProvider::CMV_PageProvider(QSharedPointer<CMV_CurrentBook> cr) :
+    QQuickImageProvider(QQuickImageProvider::Pixmap),
+    currentBook{cr}
 {
 
 }
@@ -17,22 +18,23 @@ QPixmap CMV_PageProvider::requestPixmap(const QString &id, QSize *size, const QS
     Q_UNUSED(size)
     Q_UNUSED(requestedSize)
 
+    CMV_ELTIMER_START(pixmap);
+
     QElapsedTimer timer;
     timer.start();
 
     QPixmap pix(CMV_DeviceInfo::instance().screenSize());
 
     QPainter painter(&pix);
-    auto img = CMV_CurrentBook::instance().getPageData(id);
+    auto img = currentBook->getPageData(id);
     auto imgScaled = img.scaled(pix.size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
     QPoint imgPoint((CMV_DeviceInfo::instance().screenWidth() - imgScaled.width()) / 2, (CMV_DeviceInfo::instance().screenHeight()- imgScaled.height()) / 2);
-    CMV_DEBUG<<"imgPoint:"<<imgPoint;
+
     painter.fillRect(pix.rect(),QColor("black"));
     painter.drawImage(imgPoint,imgScaled);
-    CMV_DEBUG<<"Page Size:"<<imgScaled.size();
 
-    CMV_DEBUG<<"Elapsed:"<<timer.elapsed();
+    CMV_ELTIMER_STOP(pixmap);
 
     return pix;
 }

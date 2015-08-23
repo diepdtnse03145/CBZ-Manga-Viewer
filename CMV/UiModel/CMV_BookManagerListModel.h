@@ -2,19 +2,21 @@
 #define CMV_BOOKMANAGERLISTMODEL_H
 
 #include <QAbstractListModel>
+#include "CMV_BookManager.h"
 
 class CMV_BookManagerListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    CMV_BookManagerListModel(QObject* parent = 0);
+    CMV_BookManagerListModel(QSharedPointer<CMV_BookManager> manager,QObject* parent = 0);
     ~CMV_BookManagerListModel() = default;
 
     enum PageListRole{
         NameRole  = Qt::UserRole + 1,
         TypeRole,
         SizeRole,
-        CoverRole
+        CoverRole,
+        PathRole
     };
 
 public slots:
@@ -23,7 +25,7 @@ public slots:
 
 protected:
     QHash<int, QByteArray> roleNames() const;
-
+    QSharedPointer<CMV_BookManager> bookManager;
 };
 
 #endif // CMV_BOOKMANAGERLISTMODEL_H

@@ -1,7 +1,9 @@
 #include "CMV_PageListModel.h"
 #include "CMV_CurrentBook.h"
 
-CMV_PageListModel::CMV_PageListModel(QObject *parent) : QAbstractListModel(parent)
+CMV_PageListModel::CMV_PageListModel(QSharedPointer<CMV_CurrentBook> cr, QObject *parent) :
+    QAbstractListModel(parent),
+    currentBook{cr}
 {
 
 }
@@ -15,17 +17,17 @@ QHash<int, QByteArray> CMV_PageListModel::roleNames() const {
 int CMV_PageListModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    return CMV_CurrentBook::instance().size();
+    return currentBook->size();
 }
 
 QVariant CMV_PageListModel::data(const QModelIndex & index, int role) const
 {
-    if (index.row() < 0 || index.row() >= CMV_CurrentBook::instance().size())
+    if (index.row() < 0 || index.row() >= currentBook->size())
         return QVariant();
 
     switch (role){
     case CMV_PageListModel::NameRole:
-        return QStringLiteral("image://pageList/%1").arg(CMV_CurrentBook::instance().pageName(index.row()));
+        return QStringLiteral("image://pageList/%1").arg(currentBook->pageName(index.row()));
     }
 
     return QVariant();
