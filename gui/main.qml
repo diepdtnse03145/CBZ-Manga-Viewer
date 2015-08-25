@@ -12,12 +12,6 @@ ApplicationWindow {
     Loader{
         anchors.fill: parent
         id: screenLoader
-        source: "qrc:/qml/gui/BookManagerScreen.qml"
+        source: ScreenManager.currentScreenSource
     }
-
-    function loadSource(source) {
-        console.log("Got message:", source)
-        screenLoader.source = source
-    }
-
 }

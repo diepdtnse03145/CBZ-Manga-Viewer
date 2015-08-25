@@ -54,7 +54,7 @@ Image{
         MouseArea{
             anchors.fill: parent
             onClicked: {
-                ScreenManager.toManager()
+                ScreenManager.viewerToManager()
             }
         }
     }

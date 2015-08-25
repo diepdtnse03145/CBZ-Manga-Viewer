@@ -3,20 +3,25 @@
 
 #include <QObject>
 #include <QUrl>
+#include <QStateMachine>
 
 class CMV_ScreenManager : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QUrl currentScreenSource MEMBER m_currentScreenSource NOTIFY currentScreenChanged)
 public:
     explicit CMV_ScreenManager(QObject *parent = 0);
 
 signals:
-    void screenSourceChanged(QUrl);
+    void currentScreenChanged(QUrl);
+    void viewerToManager();
+    void managerToViewer();
 
 public slots:
-    void toViewer();
-    void toManager();
-    void toSetting();
+
+private:
+    QStateMachine machine;
+    QUrl m_currentScreenSource;
 };
 
 #endif // CMV_SCREENMANAGER_H

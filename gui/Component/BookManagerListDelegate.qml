@@ -47,7 +47,7 @@ Rectangle {
         onClicked: {
             console.debug("set current book: "+ index)
             CurrentBook.setBook(path)
-            ScreenManager.toViewer()
+            ScreenManager.managerToViewer()
         }
     }
 }

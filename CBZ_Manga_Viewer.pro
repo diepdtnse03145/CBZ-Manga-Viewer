@@ -15,10 +15,10 @@ SOURCES += main.cpp \
     CMV/UiModel/CMV_BookCoverProvider.cpp \
     CMV/CMV_ScreenManager.cpp
 
-TARGET = CBZ_Manga_Reader
-
 RESOURCES += \
-    resource.qrc
+    gui/Screen/screen.qrc \
+    gui/Component/component.qrc \
+    gui/system.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -39,7 +39,8 @@ HEADERS += \
     CMV/CMV_BookManager.h \
     CMV/UiModel/CMV_BookCoverProvider.h \
     CMV/CMV_ScreenManager.h \
-    gui/CMV_ScreenDefine.h
+    gui/CMV_ScreenDefine.h \
+    gui/Screen/CMV_ScreenDefine.h
 
 CONFIG += C++14
 
@@ -48,7 +49,10 @@ INCLUDEPATH += CMV \
                CMV/Book
 
 
-DEFINES += CMV_NO_ELTIMER
+DEFINES += \
+#           CMV_NO_ELTIMER   \
+           CMV_NO_DEBUG_OUTPUT
+
 
 CONFIG(release, debug|release) {
     DEFINES += CMV_NO_DEBUG_OUTPUT

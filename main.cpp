@@ -16,6 +16,8 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    app.setOrganizationName("DiepDTN");
+    app.setApplicationName("CBZ Manga Viewer");
     QQmlApplicationEngine engine;
     CMV_ScreenManager screenManager;
     auto bookManager = QSharedPointer<CMV_BookManager>::create();
@@ -41,11 +43,11 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("pageLists", &pageListModel);
     engine.rootContext()->setContextProperty("bookLists", &bookManagerModel);
 
-    engine.load(QUrl(QStringLiteral("qrc:/qml/gui/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/System/main.qml")));
 
-    QObject::connect(&screenManager,&CMV_ScreenManager::screenSourceChanged,[&engine](QUrl source){
-        QMetaObject::invokeMethod(engine.rootObjects().at(0), "loadSource",
-                                  Q_ARG(QVariant, source));
-    });
+//    QObject::connect(&screenManager,&CMV_ScreenManager::screenSourceChanged,[&engine](QUrl source){
+//        QMetaObject::invokeMethod(engine.rootObjects().at(0), "loadSource",
+//                                  Q_ARG(QVariant, source));
+//    });
     return app.exec();
 }
