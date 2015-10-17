@@ -9,9 +9,47 @@ ApplicationWindow {
     width: 640
     visible: true
 
+    function loadScreen(screenSource){
+        prev.source = next.source
+        next.source = screenSource
+        console.debug("Change to: "+screenSource)
+        startChangeScreen()
+    }
+
+    function startChangeScreen(){
+        screenChange.restart()
+    }
+
     Loader{
-        anchors.fill: parent
-        id: screenLoader
-        source: ScreenManager.currentScreenSource
+        id: prev
+    }
+
+    Loader{
+        id: next
+    }
+
+    ParallelAnimation {
+        id: screenChange
+        running: false
+
+        PropertyAnimation {
+            id: prevAni
+            target: prev
+            property: "x"
+            from: 0
+            to: -640
+            easing.type: Easing.InCubic
+            duration: 1000
+        }
+
+        PropertyAnimation {
+            id: nexAni
+            target: next
+            property: "x"
+            from: 640
+            to: 0
+            easing.type: Easing.InCubic
+            duration: 1000
+        }
     }
 }

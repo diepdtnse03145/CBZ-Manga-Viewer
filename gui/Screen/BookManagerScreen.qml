@@ -1,11 +1,17 @@
 import "../Component"
 import QtQuick 2.0
 
-ListView{
-    anchors.fill: parent
-    clip:true
-    model: bookLists
-    delegate: BookManagerListDelegate{
+ScreenBase{
+    id: root
 
+    ListView{
+        anchors.fill: parent
+        clip:true
+        model: bookLists
+        delegate: BookManagerListDelegate{
+
+        }
     }
 }
+
+

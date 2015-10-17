@@ -45,9 +45,9 @@ int main(int argc, char *argv[])
 
     engine.load(QUrl(QStringLiteral("qrc:/System/main.qml")));
 
-//    QObject::connect(&screenManager,&CMV_ScreenManager::screenSourceChanged,[&engine](QUrl source){
-//        QMetaObject::invokeMethod(engine.rootObjects().at(0), "loadSource",
-//                                  Q_ARG(QVariant, source));
-//    });
+    QObject::connect(&screenManager,&CMV_ScreenManager::currentScreenChanged,[&engine](QUrl source){
+        QMetaObject::invokeMethod(engine.rootObjects().at(0), "loadScreen",
+                                  Q_ARG(QVariant, source));
+    });
     return app.exec();
 }

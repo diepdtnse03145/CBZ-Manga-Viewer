@@ -1,20 +1,26 @@
 import "../Component"
 import QtQuick 2.0
 
-PageDisplay {
-    id: page
-    anchors.fill: parent
-    source : CurrentBook.currentPage
-    pageListModel: pageLists
-    onNext: {
-        CurrentBook.next()
-    }
+ScreenBase{
+    id: root
 
-    onPrevious: {
-        CurrentBook.previous()
-    }
+    PageDisplay {
+        id: page
+        anchors.fill: parent
+        source : CurrentBook.currentPage
+        pageListModel: pageLists
+        onNext: {
+            CurrentBook.next()
+        }
 
-    onToPage: {
-        CurrentBook.gotoPage(page)
+        onPrevious: {
+            CurrentBook.previous()
+        }
+
+        onToPage: {
+            CurrentBook.gotoPage(page)
+        }
     }
 }
+
+
