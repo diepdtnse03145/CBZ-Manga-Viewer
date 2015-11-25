@@ -62,4 +62,5 @@ void CMV_CurrentBook::setBook(QString path)
         book = QSharedPointer<CMV_CbzBook>::create(path);
         index = 0;
     }
+    qDebug()<<size();
 }

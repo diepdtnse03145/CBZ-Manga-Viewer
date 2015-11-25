@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/Component">
-        <file>BookManagerListDelegate.qml</file>
-        <file>PageDisplay.qml</file>
-        <file>PageListDelegate.qml</file>
-    </qresource>
-</RCC>

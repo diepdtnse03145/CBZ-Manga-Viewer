@@ -1,5 +1,5 @@
 #include "CMV_ScreenManager.h"
-#include "gui/Screen/CMV_ScreenDefine.h"
+#include "CMV_ScreenDefine.h"
 #include "CMV_Log.h"
 #include <QtCore>
 

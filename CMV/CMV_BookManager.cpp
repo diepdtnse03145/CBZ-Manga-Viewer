@@ -5,7 +5,7 @@
 
 CMV_BookManager::CMV_BookManager()
 {
-    QDirIterator ite{QStringLiteral(R"(/home/diepdtn/Music)"),QDirIterator::Subdirectories};
+    QDirIterator ite{QStringLiteral(R"(/home/diep/Music)"),QDirIterator::Subdirectories};
     while(ite.hasNext ()){
         if(ite.fileInfo().isFile() && (!QString::compare(ite.fileInfo().suffix(),"CBZ",Qt::CaseInsensitive))){
             auto b = QSharedPointer<CMV_CbzBook>::create(ite.filePath());

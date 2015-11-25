@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>bookManager.png</file>
+        <file>refresh.png</file>
+    </qresource>
+</RCC>

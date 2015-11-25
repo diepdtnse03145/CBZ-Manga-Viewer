@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/Screen">
-        <file>BookManagerScreen.qml</file>
-        <file>PageDisplayScreen.qml</file>
-        <file>ScreenBase.qml</file>
-    </qresource>
-</RCC>
