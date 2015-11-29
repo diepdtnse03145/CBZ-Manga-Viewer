@@ -6,11 +6,13 @@
         <file>BookManagerScreen.qml</file>
         <file>ScreenBase.qml</file>
         <file>PageDisplayScreen.qml</file>
+        <file>PageListOnscreen.qml</file>
     </qresource>
     <qresource prefix="/Component" lang="qml">
         <file>BookManagerListDelegate.qml</file>
         <file>PageListDelegate.qml</file>
         <file>PageDisplay.qml</file>
         <file>TopPanel.qml</file>
+        <file>BottomPageList.qml</file>
     </qresource>
 </RCC>

@@ -1,4 +1,4 @@
-import QtQuick 2.4
+import QtQuick 2.5
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
@@ -39,7 +39,7 @@ ApplicationWindow {
             from: 0
             to: -640
             easing.type: Easing.InCubic
-            duration: 1000
+            duration: 500
         }
 
         PropertyAnimation {
@@ -49,7 +49,7 @@ ApplicationWindow {
             from: 640
             to: 0
             easing.type: Easing.InCubic
-            duration: 1000
+            duration: 500
         }
     }
 }

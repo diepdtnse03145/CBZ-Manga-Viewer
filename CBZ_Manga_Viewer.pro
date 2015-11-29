@@ -1,4 +1,4 @@
-QT += qml quick widgets gui-private gui
+QT += qml quick widgets gui-private gui sql
 
 CONFIG += C++14
 TEMPLATE = app

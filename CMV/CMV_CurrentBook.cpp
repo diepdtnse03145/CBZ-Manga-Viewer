@@ -55,6 +55,11 @@ void CMV_CurrentBook::gotoPage(int page)
     emit currentPageChanged();
 }
 
+QString CMV_CurrentBook::name()
+{
+    return book->name();
+}
+
 void CMV_CurrentBook::setBook(QString path)
 {
     CMV_DEBUG<<"set Book"<<path;

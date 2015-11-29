@@ -6,7 +6,10 @@ ScreenBase{
     id: root
 
     ScrollView{
-        anchors.fill: root
+        anchors.top: topPanel.bottom
+        anchors.left: root.left
+        anchors.right: root.right
+        anchors.bottom: root.bottom
         ListView{
             anchors.fill: parent
             clip:true
@@ -22,8 +25,8 @@ ScreenBase{
         anchors.top: root.top
         anchors.left: root.left
         anchors.right: root.right
-        height: 50
-        visible: true
+        text: "Book Manager"
+        opacity: 1
     }
 }
 

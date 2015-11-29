@@ -25,6 +25,7 @@ public:
     Q_INVOKABLE void next();
     Q_INVOKABLE void previous();
     Q_INVOKABLE void gotoPage(int page);
+    Q_INVOKABLE QString name();
     inline QString pageName(int index) const;
     inline int size() const;
 

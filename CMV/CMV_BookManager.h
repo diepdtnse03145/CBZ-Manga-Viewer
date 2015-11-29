@@ -25,6 +25,9 @@ public:
         return bookList.size();
     }
 
+    void updateBookList();
+    void updateBookDatabase();
+
 private:
     QList<QSharedPointer<CMV_Book>> bookList;
 
